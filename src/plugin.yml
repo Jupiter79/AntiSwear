@@ -3,3 +3,7 @@ version: 1.0
 api-version: 1.18
 main: at.jupiter.antiswear.AntiSwear
 author: Jupiter_79#9440
+
+commands:
+  antiswear:
+    description: Reloads the config

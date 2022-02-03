@@ -1,0 +1,42 @@
+# Permissions:
+# antiswear.reload -> Permission to reload the config
+# antiswear.bypass -> Bypass for all blocked words
+# antiswear.notify -> Is notified if someone swears
+
+# Here you can define the message, which should be send to the swearing players, if his message was blocked
+blockedMessage: "§cWatch your mouth!"
+
+# Here you can define the chars which will be blocked (separate them with a space)
+# For example if someone writes fa*ggot, the * will be ignored and thus the message will be blocked
+ignoredChars:
+  - ' '
+  - '!'
+  - '_'
+  - '-'
+  - '#'
+  - '*'
+  - '.'
+  - ','
+  - ';'
+  - '+'
+  - '/'
+  - '&'
+  - '%'
+  - '?'
+  - '~'
+
+# Here you can enter the words which should be blocked
+# The case doesn't matter
+words:
+  - "faggot"
+  - "bitch"
+  - "gay"
+  - "fuck"
+  - "idiot"
+  - "ass"
+  - "nigger"
+  - "niger"
+  - "ngger"
+  - "niigger"
+  - "nigger"
+  - "hitler"
