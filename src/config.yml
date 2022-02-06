@@ -6,6 +6,13 @@
 # Here you can define the message, which should be send to the swearing players, if his message was blocked
 blockedMessage: "§cWatch your mouth!"
 
+# Here you can define the command, which should be executed when someone swears
+# Wildcards: %player% = the name of the swearing player
+# Note: Do NOT put a slash at the beginning it will NOT work!
+# e.g. "mute %player% 5m"
+# Leave blank if you don't want a command to be executed
+punishCommand: ""
+
 # Here you can define the chars which will be blocked (separate them with a space)
 # For example if someone writes fa*ggot, the * will be ignored and thus the message will be blocked
 ignoredChars:
