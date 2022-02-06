@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 public class PreventSwear implements Listener {
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
-        Player p = (Player) e.getPlayer();
+        Player p = e.getPlayer();
 
         final String[] message = {e.getMessage()};
 
@@ -34,6 +35,7 @@ public class PreventSwear implements Listener {
                 p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, SoundCategory.MASTER, 1, 1);
 
                 notifyMods(p, e.getMessage());
+                punishCommand(p);
             }
         }
     }
@@ -42,5 +44,18 @@ public class PreventSwear implements Listener {
         Bukkit.getOnlinePlayers().stream().filter(x -> x.hasPermission("antiswear.notify")).collect(Collectors.toList()).forEach(x -> {
             x.sendMessage(AntiSwear.prefix + " §aThe player §6" + swearer.getName() + " §atried to send the following message:\n§e" + message);
         });
+    }
+
+    void punishCommand(Player swearer) {
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                String punishCommand = AntiSwear.config.getString("punishCommand");
+
+                if (punishCommand != null) {
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), punishCommand.replace("%player%", swearer.getName()));
+                }
+            }
+        }.runTask(AntiSwear.plugin);
     }
 }
